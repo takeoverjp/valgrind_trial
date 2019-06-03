@@ -1,5 +1,7 @@
 /mem_leak
 /mem_double_free
+/mem_use_after_free
+/mem_out_of_range
 /fd_leak
 *~
 *.o
