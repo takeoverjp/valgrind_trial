@@ -1,4 +1,5 @@
 /memleak
+/mem_double_free
 /fdleak
 *~
 *.o
