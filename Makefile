@@ -1,5 +1,6 @@
 CFLAGS=-g
 CC=gcc
+VALOPT=--error-exitcode=1
 
 BIN=mem_leak \
 	mem_double_free \
@@ -20,28 +21,28 @@ mem_leak: mem_leak.c
 	$(CC) -o $@ $^
 
 run-mem_leak: mem_leak
-	valgrind ./$^
+	! valgrind $(VALOPT) --leak-check=full ./$^
 
 mem_double_free: mem_double_free.c
 	$(CC) -o $@ $^
 
 run-mem_double_free: mem_double_free
-	valgrind ./$^
+	! valgrind $(VALOPT) ./$^
 
 mem_use_after_free: mem_use_after_free.c
 	$(CC) -o $@ $^
 
 run-mem_use_after_free: mem_use_after_free
-	valgrind ./$^
+	! valgrind $(VALOPT) ./$^
 
 mem_out_of_range: mem_out_of_range.c
 	$(CC) -o $@ $^
 
 run-mem_out_of_range: mem_out_of_range
-	valgrind ./$^
+	! valgrind $(VALOPT) ./$^
 
 fd_leak: fd_leak.c
 	$(CC) -o $@ $^
 
 run-fd_leak: fd_leak
-	valgrind --track-fds=yes ./$^
+	valgrind $(VALOPT) --track-fds=yes ./$^
