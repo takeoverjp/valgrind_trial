@@ -1,6 +1,6 @@
-/memleak
+/mem_leak
 /mem_double_free
-/fdleak
+/fd_leak
 *~
 *.o
 .tmp

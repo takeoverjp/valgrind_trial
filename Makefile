@@ -1,19 +1,19 @@
 CFLAGS=-g
 CC=gcc
 
-BIN=memleak \
+BIN=mem_leak \
 	mem_double_free \
-	fdleak
+	fd_leak
 
 .PHONY: all clean
-all: run-memleak run-mem_double_free run-fdleak 
+all: run-mem_leak run-mem_double_free run-fd_leak 
 clean:
 	rm -f $(BIN) *.o *~
 
-memleak: memleak.c
+mem_leak: mem_leak.c
 	$(CC) -o $@ $^
 
-run-memleak: memleak
+run-mem_leak: mem_leak
 	valgrind ./$^
 
 mem_double_free: mem_double_free.c
@@ -22,8 +22,8 @@ mem_double_free: mem_double_free.c
 run-mem_double_free: mem_double_free
 	valgrind ./$^
 
-fdleak: fdleak.c
+fd_leak: fd_leak.c
 	$(CC) -o $@ $^
 
-run-fdleak: fdleak
+run-fd_leak: fd_leak
 	valgrind --track-fds=yes ./$^
