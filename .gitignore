@@ -3,6 +3,7 @@
 /mem_use_after_free
 /mem_out_of_range
 /fd_leak
+/test_badcode
 *~
 *.o
 .tmp
